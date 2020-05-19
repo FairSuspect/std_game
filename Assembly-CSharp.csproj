@@ -66,13 +66,10 @@
     <Compile Include="Assets\Scripts\DeathTile.cs" />
     <Compile Include="Assets\Scripts\GameMode.cs" />
     <Compile Include="Assets\Scripts\HealthUI.cs" />
-    <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\PlayerData.cs" />
-    <Compile Include="Assets\Scripts\Scoring.cs" />
     <Compile Include="Assets\Scripts\Script.cs" />
     <Compile Include="Assets\Scripts\movementP1.cs" />
     <Compile Include="Assets\Scripts\movementP2.cs" />
-    <Compile Include="Assets\Scripts\score.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
