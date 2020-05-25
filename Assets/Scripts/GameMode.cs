@@ -80,7 +80,7 @@ public class GameMode : MonoBehaviour
                             {
                                 if(!invoked)
                                 {
-                                    InvokeRepeating("CreateFallingBlock", 3f, 0.5f);
+                                    InvokeRepeating("CreateFallingBlock", 1.5f, 0.5f);
                                     invoked = true;
                                 }
                                     
