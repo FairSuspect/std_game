@@ -39,7 +39,6 @@ public class CoinGrab : MonoBehaviour
         
     }
     private void OnTriggerEnter2D(Collider2D trg) {
-        Debug.Log(c_state);
         GetComponent<AudioSource>().Play();
         GameObject Toucher;
         GameObject Another;
@@ -101,7 +100,7 @@ public class CoinGrab : MonoBehaviour
                     c_state = State.REGULAR;
                     GetComponent<SpriteRenderer>().color = Color.yellow;
                     Toucher.GetComponent<PlayerData>().getDamage(-15);
-                    transform.position = new Vector2(Random.Range(-10f, 10f), Random.Range(-5f, 5f));
+                    transform.position = new Vector3(Random.Range(-10f, 10f), Random.Range(-5f, 5f), -0.2f);
                 }
                 break;
             case State.POISON:
@@ -126,7 +125,7 @@ public class CoinGrab : MonoBehaviour
         GameObject simC;
         for (int i = 0; i < count; i++)
         {
-            simC = Instantiate(simpleCoin, new Vector3(Random.Range(-10f, 10f), Random.Range(-5f, 5f), 0), transform.rotation);
+            simC = Instantiate(simpleCoin, new Vector3(Random.Range(-10f, 10f), Random.Range(-5f, 5f), -0.2f), transform.rotation);
             simC.GetComponent<CoinGrab>().c_state = State.SIMPLE;
             simC.GetComponent<CoinGrab>().player1 = player1;
             simC.GetComponent<CoinGrab>().player2 = player2;
