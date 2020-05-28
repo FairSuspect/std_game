@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DynamiteGrab : MonoBehaviour
 {
@@ -8,23 +10,29 @@ public class DynamiteGrab : MonoBehaviour
     public GameObject dynamite;
     public GameObject player1;
     public GameObject player2;
+    public GameObject explosion;
+    public GameObject timerDisplay;
     public enum State
     {
         CARRING,
-        DELIVERING
+        DELIVERING,
+        DETECTION
     }
     public State def;
-    State dynamiteState = State.DELIVERING;
-    public GameObject whoCarring;
+    State dynamiteState = State.DETECTION;
+    public GameObject carrier;
     PlayerData player1Data;
     PlayerData player2Data;
     public float timer;
+    private TextMeshProUGUI timerDisplayText;
+    public int playersNum;
+
     // Start is called before the first frame update
     void Start()
     {
+        timerDisplayText = timerDisplay.GetComponent<TextMeshProUGUI>();
         player1Data = player1.GetComponent<PlayerData>();
         player2Data = player2.GetComponent<PlayerData>();
-        firstPlayer = Random.Range(0,2);
     }
 
     // Update is called once per frame
@@ -33,55 +41,74 @@ public class DynamiteGrab : MonoBehaviour
         switch (dynamiteState)
         {
             case State.CARRING: {
-                transform.position = whoCarring.GetComponent<Transform>().transform.position;
-
+                transform.position = new Vector3 (carrier.GetComponent<Transform>().transform.position.x, carrier.GetComponent<Transform>().transform.position.y,-1);
                 timer -= Time.deltaTime;
-                if ( timer < 5 )
+                timerDisplayText.text = "Времени осталось: " + Mathf.Floor(timer).ToString();
+                if ( timer <= 1f )
                 {
-                    switch (whoCarring.name)
+                    GetComponent<AudioSource>().Play(); //звук взрыва
+                    Instantiate(explosion, transform.position, transform.rotation);
+                    switch (carrier.name)
                     {
                         case "player1":
-                            player1Data.setHP(0);
+                            player1Data.setHP(0); //DEGUB
                             print("player1 здох");
                             break;
                         case "player2":
                             player2Data.setHP(0);
-                            print("player2 здох");
+                            print("player2 здох"); //DEBUG
                             break;
                     }
+                    Destroy(carrier.gameObject);
+                    dynamiteState = State.DETECTION;
                 }
             }
             break;
 
             case State.DELIVERING: {
+                timer = 15f;
                 switch (firstPlayer)
                 {
                     case 0: 
                         transform.position = Vector2.Lerp(transform.position, player1.GetComponent<Transform>().transform.position, 0.3f);
-                        // transform.position.z = -1;
                         break;
                     case 1: 
                         transform.position = Vector2.Lerp(transform.position, player2.GetComponent<Transform>().transform.position, 0.3f);
-                        // transform.position.z = -1;
                         break;
                 }
-                dynamiteState = State.DELIVERING;
+            }
+            break;
+
+            case State.DETECTION: {
+                transform.position = new Vector3 (-2, 3, -1);
+                playersNum = GameObject.FindGameObjectsWithTag("Player").Length;
+                if (playersNum <= 1)
+                {
+                    transform.position = new Vector3 (100, 100,-1); //типа спрятал
+                    Invoke("GameOver", 2.0f);
+                    // SceneManager.LoadScene("Menu");
+                    print("гейм овер"); //DEBUG
+                }
+                else
+                {
+                    firstPlayer = Random.Range(0, playersNum);
+                    dynamiteState = State.DELIVERING;
+                }
             }
             break;
         }
     }
 
     void OnTriggerEnter2D(Collider2D player) {
-        print(player.gameObject.name);
+        print(player.gameObject.name); //DEBUG
         dynamiteState = State.CARRING;
         transform.position = player.GetComponent<Transform>().transform.position;
-        whoCarring = player.gameObject;
-        timer = 10f;
+        carrier = player.gameObject;
+        
     }
 
-    // void giveDynamite (GameObject player) {
-    //     transform.Translate((transform.position - player.GetComponent<Transform>().transform.position) * Time.deltaTime );
-
-    // }
+    void GameOver() {
+        SceneManager.LoadScene("Menu");
+    }
 
 }

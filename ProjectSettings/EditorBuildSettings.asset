@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 60265ae57470d4ecca809f3c36a4ff67
+  - enabled: 1
+    path: Assets/Scenes/KlevleevSceneCatchUp.unity
+    guid: 1ec51cf8d22d84f9fbf6f988bed8da40
   m_configObjects: {}
