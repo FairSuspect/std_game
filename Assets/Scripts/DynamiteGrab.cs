@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DynamiteGrab : MonoBehaviour
 {
@@ -84,6 +85,8 @@ public class DynamiteGrab : MonoBehaviour
                 if (playersNum <= 1)
                 {
                     transform.position = new Vector3 (100, 100,-1); //типа спрятал
+                    Invoke("GameOver", 2.0f);
+                    // SceneManager.LoadScene("Menu");
                     print("гейм овер"); //DEBUG
                 }
                 else
@@ -102,6 +105,10 @@ public class DynamiteGrab : MonoBehaviour
         transform.position = player.GetComponent<Transform>().transform.position;
         carrier = player.gameObject;
         
+    }
+
+    void GameOver() {
+        SceneManager.LoadScene("Menu");
     }
 
 }
