@@ -6,6 +6,13 @@ public class movementP1 : MonoBehaviour
 {
     // Start is called before the first frame update
 	public int speed = 8;
+    bool onCollision = false;
+    public int jumpForce = 3;
+    Rigidbody2D rb;
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     void Start()
     {
     //    Debug.Log(GetComponent<Score>());
@@ -14,15 +21,21 @@ public class movementP1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(rb.velocity.x > 8)
+            rb.velocity.Set(8f, rb.velocity.y);
         if(transform.position.y < -10)
             transform.Translate(Vector3.up * 20, Space.World);
-        if(Input.GetKey(KeyCode.UpArrow))
-            transform.Translate(Vector3.up * Time.deltaTime * speed, Space.World);
-        if(Input.GetKey(KeyCode.DownArrow))
-            transform.Translate(Vector3.down * Time.deltaTime * speed, Space.World);
+        if(Input.GetKey(KeyCode.UpArrow) && onCollision)
+            rb.AddForce(transform.up, ForceMode2D.Impulse);
         if(Input.GetKey(KeyCode.LeftArrow))
-            transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
+            rb.AddForce(-transform.right * speed);
         if(Input.GetKey(KeyCode.RightArrow))
-            transform.Translate(Vector3.right * Time.deltaTime * speed, Space.World); 
+            rb.AddForce(transform.right * speed);
+    }
+     void OnCollisionEnter2D(Collision2D other) {
+        onCollision = true;
+    }
+    void OnCollisionExit2D(Collision2D other) {
+        onCollision = false;
     }
 }

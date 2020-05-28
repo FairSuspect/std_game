@@ -18,7 +18,7 @@ public class GameMode : MonoBehaviour
     Vector3 position_p2_grab = new Vector3(8.07f, 0.6f, 0);
     Vector3 position_p1_fallingBlocks = new Vector3(31.51f, 3.4f, 0);
     Vector3 position_p2_fallingBlocks = new Vector3(37.87f, 3.49f, 0);
-    Vector3 position_camera_grab = new Vector3(0, 0, -1);
+    Vector3 position_camera_grab = new Vector3(-0.5f, 0, -1);
     Vector3 position_camera_fallingBlocks = new Vector3(36.73f, 0, -1);
 
     bool invoked = false;
@@ -96,9 +96,18 @@ public class GameMode : MonoBehaviour
                     CancelInvoke();
                     invoked = false;
                     if (player1.GetComponent<PlayerData>().getHP() <= 0)
+                    {
                         infoDisplay.text = "Player 2 wins";
+                        player2.GetComponent<PlayerData>().IncreaceScore();
+                    }
+                        
                     else if (player2.GetComponent<PlayerData>().getHP() <= 0)
+                    {
                         infoDisplay.text = "Player 1 wins";
+                        player1.GetComponent<PlayerData>().IncreaceScore();
+                    }
+                        
+                    
                     if (Random.Range(0,2) == 0)
                         g_mode = Mode.COINGRAB;
                     else

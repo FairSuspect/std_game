@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    public int coins = 0;
+    public int score = 0;
     public int hp = 100;
 
 
@@ -19,13 +19,17 @@ public class PlayerData : MonoBehaviour
     {
 
     }
-    public void IncreaceCoins()
+    public void IncreaceScore()
     {
-        coins++;
+        score++;
     }
-    public int getCoins()
+    public int getScore()
     {
-        return coins;
+        return score;
+    }
+    public void setScore(int value)
+    {
+        score = value;
     }
     public void getDamage(int damage)
     {
