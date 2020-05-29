@@ -150,11 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330f717ac5f9bb746ac218933b495baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
-  Camera: {fileID: 0}
+  player1: {fileID: 5110273230454832545, guid: 8323a83d1a312b84592f8c0586474797, type: 3}
+  player2: {fileID: 1881174134195550643, guid: a3cf2c016f882194aa86f3b18019deb9, type: 3}
   infoText: {fileID: 0}
-  deathTile: {fileID: 0}
   manager: {fileID: 0}
   g_status: 0
   g_mode: 0

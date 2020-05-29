@@ -9,9 +9,7 @@ public class GameMode : MonoBehaviour
     private GameObject[] players; 
     public GameObject player1;
     public GameObject player2;
-    public GameObject Camera;
     public GameObject infoText;
-    public GameObject deathTile;
 
     private TextMeshProUGUI infoDisplay;
     private int [] playersScore = {0,0};
@@ -40,19 +38,18 @@ public class GameMode : MonoBehaviour
     {
         DontDestroyOnLoad(this);
 
-        Camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
     // Start is called before the first frame update
     void Start()
     {
         infoDisplay = infoText.GetComponent<TextMeshProUGUI>();
-        GetComponent<AudioSource>().Play();
+       // GetComponent<AudioSource>().Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(g_status)
+        /*switch(g_status)
         {
             case GameStatus.PREPARING:
                 {
@@ -119,7 +116,7 @@ public class GameMode : MonoBehaviour
                     Invoke("startGame", 3f);
                 }
                 break;
-        }
+        }*/
     }void pauseGame()
     {
         g_status = GameStatus.PAUSE;
@@ -134,10 +131,7 @@ public class GameMode : MonoBehaviour
     {
         infoDisplay.text = textToDisplay;
     }
-    void CreateFallingBlock()
-    {
-        Instantiate(deathTile);          
-    }
+
     void nextRound()
     {
         switch(Random.Range(0,3))

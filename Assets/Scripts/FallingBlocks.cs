@@ -9,6 +9,7 @@ public class FallingBlocks : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     public GameObject gmMode;
+    public GameObject deathTile;
     bool invoked = false;
     string textToDisplay = "";
      public enum GameStatus
@@ -18,11 +19,11 @@ public class FallingBlocks : MonoBehaviour
         PLAYING,
         ROUNDEND
     }
-    GameStatus g_status;
+    public GameStatus g_status;
     void Awake()
     {
         gmMode = GameObject.FindGameObjectWithTag("GameController");
-        
+        gmMode.GetComponent<GameMode>().setPlayers(player1,player2);
         Debug.Log("I'v got gmMode: " + gmMode);
     }
     void Start()
@@ -37,8 +38,6 @@ public class FallingBlocks : MonoBehaviour
         {
             case GameStatus.PREPARING:
                 {
-                    player1.GetComponent<PlayerData>().setHP(100);
-                    player2.GetComponent<PlayerData>().setHP(100);
                     Invoke("pauseGame", 3f);
                 }
                 break;
@@ -57,10 +56,13 @@ public class FallingBlocks : MonoBehaviour
             case GameStatus.ROUNDEND:
                 {
                     CancelInvoke();
+                    for(int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; ++i)
+                        Destroy(GameObject.FindGameObjectWithTag("Enemy"));
                     invoked = false;
                     if (player1.GetComponent<PlayerData>().getHP() <= 0)
                     {
                         //infoDisplay.text = "Player 2 wins";
+ 
                         player2.GetComponent<PlayerData>().IncreaceScore();
                     }
                         
@@ -69,7 +71,7 @@ public class FallingBlocks : MonoBehaviour
                         //infoDisplay.text = "Player 1 wins";
                         player1.GetComponent<PlayerData>().IncreaceScore();
                     }
-                        
+                    g_status = GameStatus.PAUSE;
                     Invoke("nextRound",1f);
 
 
@@ -101,5 +103,17 @@ public class FallingBlocks : MonoBehaviour
                 SceneManager.LoadScene("Menu");
                 break;
         };
+    }
+    void pauseGame()
+    {
+        g_status = GameStatus.PAUSE;
+    }
+    void startGame()
+    {
+        g_status = GameStatus.PLAYING;
+    }
+    void CreateFallingBlock()
+    {
+        Instantiate(deathTile);          
     }
 }

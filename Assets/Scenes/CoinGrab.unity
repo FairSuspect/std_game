@@ -832,8 +832,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a926ae2a8bec72649adfe19531b60540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  player1: {fileID: 1180515966}
+  player2: {fileID: 283561042}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,6 +2887,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5110273230454832555, guid: 8323a83d1a312b84592f8c0586474797, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8323a83d1a312b84592f8c0586474797, type: 3}
+--- !u!1 &1180515966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5110273230454832545, guid: 8323a83d1a312b84592f8c0586474797,
+    type: 3}
+  m_PrefabInstance: {fileID: 1180515965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3817117186576152603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2898,12 +2904,12 @@ PrefabInstance:
         type: 3}
       propertyPath: player1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1180515966}
     - target: {fileID: 76084183903880770, guid: 85996cae44ee64e48a97193c1fe520c9,
         type: 3}
       propertyPath: player2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 283561042}
     - target: {fileID: 76084183903880770, guid: 85996cae44ee64e48a97193c1fe520c9,
         type: 3}
       propertyPath: def

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6506432273361457512}
   m_Layer: 0
   m_Name: deathTile
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,8 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50cb964c3a1e1ae429689afb11ff0867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
 --- !u!61 &6506432273361457512
 BoxCollider2D:
   m_ObjectHideFlags: 0
