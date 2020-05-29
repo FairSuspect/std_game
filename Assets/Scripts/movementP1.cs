@@ -5,7 +5,7 @@ using UnityEngine;
 public class movementP1 : MonoBehaviour {
     // Start is called before the first frame update
     public int speed = 8;
-    bool onCollision = false;
+    public bool onCollision = false;
     public float jumpForce = 10.0f;//Через переменную не работает
     Rigidbody2D rb;
     void Awake () {
