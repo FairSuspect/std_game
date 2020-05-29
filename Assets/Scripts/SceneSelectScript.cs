@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneSelectScript : MonoBehaviour {
     public void selectScene () {
         switch (gameObject.name) {
-            case "Catch Up":
+            case "Catch_up":
                 SceneManager.LoadScene ("CatchUp");
                 break;
             case "Coin Grab":
@@ -16,9 +16,6 @@ public class SceneSelectScript : MonoBehaviour {
                 SceneManager.LoadScene ("FallingBlocks");
                 break;
         }
-
-       /* switch(Random.Range(0,3))
-        {
     }
 
     public void rndSelectScene () {
@@ -35,7 +32,6 @@ public class SceneSelectScript : MonoBehaviour {
             default:
                 SceneManager.LoadScene ("Menu");
                 break;
-        };*/
-        SceneManager.LoadScene("FallingBlocks");
+        };
     }
 }
