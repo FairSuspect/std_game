@@ -13,7 +13,7 @@ public class SceneSelectScript : MonoBehaviour
                 break;
         }
         */
-        switch(Random.Range(0,3))
+       /* switch(Random.Range(0,3))
         {
             case 0:
                 SceneManager.LoadScene("CoinGrab");
@@ -27,6 +27,7 @@ public class SceneSelectScript : MonoBehaviour
             default:
                 SceneManager.LoadScene("Menu");
                 break;
-        };
+        };*/
+        SceneManager.LoadScene("FallingBlocks");
     }
 }

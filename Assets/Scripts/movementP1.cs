@@ -23,8 +23,6 @@ public class movementP1 : MonoBehaviour
     {
         if(rb.velocity.x > 8f)
             rb.velocity.Set(8f, rb.velocity.y);
-        if(transform.position.y < -10)
-            transform.Translate(Vector3.up * 20, Space.World);
         if(Input.GetKey(KeyCode.UpArrow) && onCollision)
             rb.velocity = new Vector2 (rb.velocity.x, jumpForce);
             
