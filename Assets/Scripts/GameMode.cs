@@ -14,8 +14,9 @@ public class GameMode : MonoBehaviour
     public GameObject deathTile;
 
     private TextMeshProUGUI infoDisplay;
+    private int [] playersScore = {0,0};
     string textToDisplay;
-
+    public GameObject manager;
 
     bool invoked = false;
 
@@ -38,9 +39,7 @@ public class GameMode : MonoBehaviour
     void Awake() 
     {
         DontDestroyOnLoad(this);
-        players = GameObject.FindGameObjectsWithTag("Player");
-        player1 = players[0];
-        player2 = players[1];
+
         Camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
     // Start is called before the first frame update
@@ -61,16 +60,10 @@ public class GameMode : MonoBehaviour
                     player2.GetComponent<PlayerData>().setHP(100);
                     switch(g_mode)
                     {
-                        case Mode.COINGRAB:
-                            player1.transform.position = position_p1_grab;
-                            player2.transform.position = position_p2_grab;
-                            Camera.transform.position = position_camera_grab;
+                        case Mode.COINGRAB:;
                             textToDisplay = "Next mode is Coin Grab!";
                             break;
                         case Mode.FALLINGBLOCKS:
-                            player1.transform.position = position_p1_fallingBlocks;
-                            player2.transform.position = position_p2_fallingBlocks;
-                            Camera.transform.position = position_camera_fallingBlocks;
                             textToDisplay = "Next mode is Falling blocks!";
                             break;
 
@@ -156,6 +149,8 @@ public class GameMode : MonoBehaviour
             case 1:
                 g_mode = Mode.FALLINGBLOCKS;
                 SceneManager.LoadScene("FallingBlocks");
+                manager = GameObject.FindGameObjectWithTag("Manager");
+                Debug.Log("manager is: " + manager); 
                 break;
             case 2:
                 g_mode = Mode.CATCHUP;
@@ -167,5 +162,24 @@ public class GameMode : MonoBehaviour
                 break;
         };
 
+    }
+    public void setPlayers(GameObject p1, GameObject p2)
+    {
+        player1 = p1;
+        player2 = p2;
+    }
+    public GameObject[] getPlayers()
+    {
+        GameObject[] players = {player1, player2};
+        return players;
+
+    }
+    public void setGameMode(Mode mode)
+    {
+        g_mode = mode;
+    }
+    public void setGameStatus(GameStatus status)
+    {
+        g_status = status;
     }
 }

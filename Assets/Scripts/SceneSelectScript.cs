@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +16,9 @@ public class SceneSelectScript : MonoBehaviour {
                 SceneManager.LoadScene ("FallingBlocks");
                 break;
         }
+
+       /* switch(Random.Range(0,3))
+        {
     }
 
     public void rndSelectScene () {
@@ -32,6 +35,7 @@ public class SceneSelectScript : MonoBehaviour {
             default:
                 SceneManager.LoadScene ("Menu");
                 break;
-        };
+        };*/
+        SceneManager.LoadScene("FallingBlocks");
     }
 }
