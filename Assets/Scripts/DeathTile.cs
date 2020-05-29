@@ -7,7 +7,7 @@ public class DeathTile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(Random.Range(-15, 15), 10, -0.5f);
+        transform.position = new Vector3(Random.Range(-11.42f, 12.35f), 10, -0.5f);
     }
 
     // Update is called once per frame
