@@ -12,9 +12,8 @@ public class GameMode : MonoBehaviour
     public GameObject infoText;
 
     private TextMeshProUGUI infoDisplay;
-    private int [] playersScore = {0,0};
+    public int [] playersScore = {0,0};
     string textToDisplay;
-    public GameObject manager;
 
     bool invoked = false;
 
@@ -143,8 +142,6 @@ public class GameMode : MonoBehaviour
             case 1:
                 g_mode = Mode.FALLINGBLOCKS;
                 SceneManager.LoadScene("FallingBlocks");
-                manager = GameObject.FindGameObjectWithTag("Manager");
-                Debug.Log("manager is: " + manager); 
                 break;
             case 2:
                 g_mode = Mode.CATCHUP;
@@ -167,6 +164,11 @@ public class GameMode : MonoBehaviour
         GameObject[] players = {player1, player2};
         return players;
 
+    }
+    public void setScore(int p1, int p2)
+    {
+        playersScore[0] = p1;
+        playersScore[1] = p2;
     }
     public void setGameMode(Mode mode)
     {

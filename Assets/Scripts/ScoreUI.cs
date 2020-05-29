@@ -6,9 +6,16 @@ using TMPro;
 public class ScoreUI : MonoBehaviour
 {
     private TextMeshProUGUI scoreDisplay;
-    public GameObject player1;
-    public GameObject player2;
+    public GameObject gmMode;
+    private int[] score = {0,0};
     // Start is called before the first frame update
+    void Awake()
+    {
+        gmMode = GameObject.FindGameObjectWithTag("GameController");
+        score[0] = gmMode.GetComponent<GameMode>().playersScore[0];
+        score[1] = gmMode.GetComponent<GameMode>().playersScore[1];
+
+    }
     void Start()
     {
         scoreDisplay = GetComponent<TextMeshProUGUI>();
@@ -17,7 +24,7 @@ public class ScoreUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string text = player1.GetComponent<PlayerData>().getScore().ToString() + " : " + player2.GetComponent<PlayerData>().getScore().ToString();
+        string text = score[0] + " : " + score[1];
         //currentTime = DateTime.Now;
         scoreDisplay.text = text;
     }

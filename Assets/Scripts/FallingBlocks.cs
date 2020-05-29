@@ -62,13 +62,14 @@ public class FallingBlocks : MonoBehaviour
                     if (player1.GetComponent<PlayerData>().getHP() <= 0)
                     {
                         //infoDisplay.text = "Player 2 wins";
- 
+                        gmMode.GetComponent<GameMode>().setScore(gmMode.GetComponent<GameMode>().playersScore[0],gmMode.GetComponent<GameMode>().playersScore[1]+1);
                         player2.GetComponent<PlayerData>().IncreaceScore();
                     }
                         
                     else if (player2.GetComponent<PlayerData>().getHP() <= 0)
                     {
                         //infoDisplay.text = "Player 1 wins";
+                        gmMode.GetComponent<GameMode>().setScore(gmMode.GetComponent<GameMode>().playersScore[0]+1,gmMode.GetComponent<GameMode>().playersScore[1]);
                         player1.GetComponent<PlayerData>().IncreaceScore();
                     }
                     g_status = GameStatus.PAUSE;
