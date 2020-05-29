@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameMode : MonoBehaviour
 {
+    private GameObject[] players; 
     public GameObject player1;
     public GameObject player2;
     public GameObject Camera;
@@ -14,12 +16,6 @@ public class GameMode : MonoBehaviour
     private TextMeshProUGUI infoDisplay;
     string textToDisplay;
 
-    Vector3 position_p1_grab = new Vector3(-6.35f,-0.7f,0);
-    Vector3 position_p2_grab = new Vector3(8.07f, 0.6f, 0);
-    Vector3 position_p1_fallingBlocks = new Vector3(31.51f, 3.4f, 0);
-    Vector3 position_p2_fallingBlocks = new Vector3(37.87f, 3.49f, 0);
-    Vector3 position_camera_grab = new Vector3(0, 0, -1);
-    Vector3 position_camera_fallingBlocks = new Vector3(36.73f, 0, -1);
 
     bool invoked = false;
 
@@ -33,10 +29,20 @@ public class GameMode : MonoBehaviour
     public enum Mode
     {
         COINGRAB,
-        FALLINGBLOCKS
+        FALLINGBLOCKS,
+        CATCHUP,
+        MENU
     }
     public GameStatus g_status;
     public Mode g_mode;
+    void Awake() 
+    {
+        DontDestroyOnLoad(this);
+        players = GameObject.FindGameObjectsWithTag("Player");
+        player1 = players[0];
+        player2 = players[1];
+        Camera = GameObject.FindGameObjectWithTag("MainCamera");
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -96,14 +102,19 @@ public class GameMode : MonoBehaviour
                     CancelInvoke();
                     invoked = false;
                     if (player1.GetComponent<PlayerData>().getHP() <= 0)
+                    {
                         infoDisplay.text = "Player 2 wins";
+                        player2.GetComponent<PlayerData>().IncreaceScore();
+                    }
+                        
                     else if (player2.GetComponent<PlayerData>().getHP() <= 0)
+                    {
                         infoDisplay.text = "Player 1 wins";
-                    if (Random.Range(0,2) == 0)
-                        g_mode = Mode.COINGRAB;
-                    else
-                        g_mode = Mode.FALLINGBLOCKS;
-                    g_status = GameStatus.PREPARING;
+                        player1.GetComponent<PlayerData>().IncreaceScore();
+                    }
+                        
+                    Invoke("nextRound",1f);
+
 
 
                 }
@@ -133,5 +144,28 @@ public class GameMode : MonoBehaviour
     void CreateFallingBlock()
     {
         Instantiate(deathTile);          
+    }
+    void nextRound()
+    {
+        switch(Random.Range(0,3))
+        {
+            case 0:
+                g_mode = Mode.COINGRAB;
+                SceneManager.LoadScene("CoinGrab");
+                break;
+            case 1:
+                g_mode = Mode.FALLINGBLOCKS;
+                SceneManager.LoadScene("FallingBlocks");
+                break;
+            case 2:
+                g_mode = Mode.CATCHUP;
+                SceneManager.LoadScene("CatchUp");
+                break;
+            default:
+                g_mode = Mode.MENU;
+                SceneManager.LoadScene("Menu");
+                break;
+        };
+
     }
 }

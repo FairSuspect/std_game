@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1881174134195550641}
   - component: {fileID: 1881174134195550640}
   - component: {fileID: 1881174134195550644}
-  - component: {fileID: 1881174134195550645}
+  - component: {fileID: 7444982559185396870}
   m_Layer: 0
   m_Name: player2
   m_TagString: Untagged
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 36b7358ddb317f34783f1d8cccdf185e, type: 3}
-  m_Color: {r: 0, g: 0.086918846, b: 0.99215686, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0415028d8365fe44bb235fe97e774e41, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
---- !u!114 &1881174134195550645
+--- !u!114 &7444982559185396870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1881174134195550643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c5546a7397295f4885664827e2757b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e9aaa141cc7ba24099cb6b846a10bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 0
