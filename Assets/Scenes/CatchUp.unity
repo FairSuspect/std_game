@@ -457,6 +457,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: player1
       objectReference: {fileID: 0}
+    - target: {fileID: 5110273230454832550, guid: 8323a83d1a312b84592f8c0586474797,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5110273230454832550, guid: 8323a83d1a312b84592f8c0586474797,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5110273230454832550, guid: 8323a83d1a312b84592f8c0586474797,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5110273230454832551, guid: 8323a83d1a312b84592f8c0586474797,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -942,7 +957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9aaa141cc7ba24099cb6b846a10bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 0
+  score: 0
   hp: 100
 --- !u!1 &1856842586
 GameObject:
