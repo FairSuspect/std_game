@@ -5,6 +5,27 @@ using UnityEngine;
 public class CoinGrab : MonoBehaviour
 {
 	
+    Vector3[] coinPosition = {
+        new Vector3(-1.92f, -0.21f, 0 ),
+        new Vector3(-3.52f, -6.26f, 0 ),
+        new Vector3(-8.11f,  0.51f, 0 ),
+        new Vector3(-8.85f,  4.7f , 0 ),
+        new Vector3( 3.9f , -4.24f, 0 ),
+        new Vector3(10.64f,  5.8f , 0 ),
+        new Vector3(-0.25f, -4.24f, 0 ),
+        new Vector3( 7.3f ,  1.83f, 0 ),
+        new Vector3(     0,  3.75f, 0 ),
+        new Vector3( 4.94f,  1.83f, 0 ),
+        new Vector3( 6.95f,  5.71f, 0 ),
+        new Vector3(-11.7f,  5.85f, 0 ),
+        new Vector3( 6.95f, -6.26f, 0 ),
+        new Vector3(-11.7f, -6.2f , 0 ),
+        new Vector3(10.98f, -6.2f , 0 ),
+        new Vector3(10.98f, -2.1f , 0 ),
+        new Vector3( 7.17f, -2.1f , 0 ),
+        new Vector3(-8.11f, -2.1f , 0 ),
+
+    };
 	int rand;
 	public GameObject simpleCoin;
     public GameObject player1;
@@ -42,7 +63,7 @@ public class CoinGrab : MonoBehaviour
         GetComponent<AudioSource>().Play();
         GameObject Toucher;
         GameObject Another;
-        if (trg == player1.GetComponent<BoxCollider2D>())
+        if (trg == player1.GetComponent<CapsuleCollider2D>())
         {
             Toucher = player1;
             Another = player2;
@@ -76,7 +97,7 @@ public class CoinGrab : MonoBehaviour
                      
 
 
-                    transform.position = new Vector2(Random.Range(-10f, 10f), Random.Range(-5f, 5f));
+                    transform.position = coinPosition[Random.Range(0,18)];
                 }
                 break;
             case State.BONUS:
@@ -110,15 +131,7 @@ public class CoinGrab : MonoBehaviour
                     transform.position = new Vector2(Random.Range(-10f, 10f), Random.Range(-5f, 5f));
                     break;
                 }
-        }
-        
-
-
-        //trg.GetComponent<PlayerData>().Coins++;
-        //Debug.Log(GameObject.Find(trg.name).GetComponent<PlayerData>());//trg.GetComponent<PlayerData>().Coins);
-
-        // objects[4].GetComponent<SpriteRenderer>().color = Color.red;
-    
+        } 
      }
     void createCoins(int count = 10)
     {

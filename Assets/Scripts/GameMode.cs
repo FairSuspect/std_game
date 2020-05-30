@@ -1,25 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameMode : MonoBehaviour
 {
+    private GameObject[] players; 
     public GameObject player1;
     public GameObject player2;
-    public GameObject Camera;
     public GameObject infoText;
-    public GameObject deathTile;
 
     private TextMeshProUGUI infoDisplay;
+    public int [] playersScore = {0,0};
     string textToDisplay;
-
-    Vector3 position_p1_grab = new Vector3(-6.35f,-0.7f,0);
-    Vector3 position_p2_grab = new Vector3(8.07f, 0.6f, 0);
-    Vector3 position_p1_fallingBlocks = new Vector3(31.51f, 3.4f, 0);
-    Vector3 position_p2_fallingBlocks = new Vector3(37.87f, 3.49f, 0);
-    Vector3 position_camera_grab = new Vector3(0, 0, -1);
-    Vector3 position_camera_fallingBlocks = new Vector3(36.73f, 0, -1);
 
     bool invoked = false;
 
@@ -33,21 +27,27 @@ public class GameMode : MonoBehaviour
     public enum Mode
     {
         COINGRAB,
-        FALLINGBLOCKS
+        FALLINGBLOCKS,
+        CATCHUP,
+        MENU
     }
     public GameStatus g_status;
     public Mode g_mode;
+    void Awake() 
+    {
+        DontDestroyOnLoad(this);
+    }
     // Start is called before the first frame update
     void Start()
     {
         infoDisplay = infoText.GetComponent<TextMeshProUGUI>();
-        GetComponent<AudioSource>().Play();
+       // GetComponent<AudioSource>().Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(g_status)
+        /*switch(g_status)
         {
             case GameStatus.PREPARING:
                 {
@@ -55,16 +55,10 @@ public class GameMode : MonoBehaviour
                     player2.GetComponent<PlayerData>().setHP(100);
                     switch(g_mode)
                     {
-                        case Mode.COINGRAB:
-                            player1.transform.position = position_p1_grab;
-                            player2.transform.position = position_p2_grab;
-                            Camera.transform.position = position_camera_grab;
+                        case Mode.COINGRAB:;
                             textToDisplay = "Next mode is Coin Grab!";
                             break;
                         case Mode.FALLINGBLOCKS:
-                            player1.transform.position = position_p1_fallingBlocks;
-                            player2.transform.position = position_p2_fallingBlocks;
-                            Camera.transform.position = position_camera_fallingBlocks;
                             textToDisplay = "Next mode is Falling blocks!";
                             break;
 
@@ -96,14 +90,19 @@ public class GameMode : MonoBehaviour
                     CancelInvoke();
                     invoked = false;
                     if (player1.GetComponent<PlayerData>().getHP() <= 0)
+                    {
                         infoDisplay.text = "Player 2 wins";
+                        player2.GetComponent<PlayerData>().IncreaceScore();
+                    }
+                        
                     else if (player2.GetComponent<PlayerData>().getHP() <= 0)
+                    {
                         infoDisplay.text = "Player 1 wins";
-                    if (Random.Range(0,2) == 0)
-                        g_mode = Mode.COINGRAB;
-                    else
-                        g_mode = Mode.FALLINGBLOCKS;
-                    g_status = GameStatus.PREPARING;
+                        player1.GetComponent<PlayerData>().IncreaceScore();
+                    }
+                        
+                    Invoke("nextRound",1f);
+
 
 
                 }
@@ -115,7 +114,7 @@ public class GameMode : MonoBehaviour
                     Invoke("startGame", 3f);
                 }
                 break;
-        }
+        }*/
     }void pauseGame()
     {
         g_status = GameStatus.PAUSE;
@@ -130,8 +129,51 @@ public class GameMode : MonoBehaviour
     {
         infoDisplay.text = textToDisplay;
     }
-    void CreateFallingBlock()
+
+    void nextRound()
     {
-        Instantiate(deathTile);          
+        switch(Random.Range(0,3))
+        {
+            case 0:
+                g_mode = Mode.COINGRAB;
+                SceneManager.LoadScene("CoinGrab");
+                break;
+            case 1:
+                g_mode = Mode.FALLINGBLOCKS;
+                SceneManager.LoadScene("FallingBlocks");
+                break;
+            case 2:
+                g_mode = Mode.CATCHUP;
+                SceneManager.LoadScene("CatchUp");
+                break;
+            default:
+                g_mode = Mode.MENU;
+                SceneManager.LoadScene("Menu");
+                break;
+        };
+    }
+    public void setPlayers(GameObject p1, GameObject p2)
+    {
+        player1 = p1;
+        player2 = p2;
+    }
+    public GameObject[] getPlayers()
+    {
+        GameObject[] players = {player1, player2};
+        return players;
+
+    }
+    public void setScore(int p1, int p2)
+    {
+        playersScore[0] = p1;
+        playersScore[1] = p2;
+    }
+    public void setGameMode(Mode mode)
+    {
+        g_mode = mode;
+    }
+    public void setGameStatus(GameStatus status)
+    {
+        g_status = status;
     }
 }
