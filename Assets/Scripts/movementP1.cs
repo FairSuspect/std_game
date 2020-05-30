@@ -16,7 +16,6 @@ public class movementP1 : MonoBehaviour {
     }
 
     // Update is called once per frame
-
     void FixedUpdate () {
         if (Mathf.Abs(rb.velocity.x) > 8.0f) {
             rb.velocity = new Vector3 (rb.velocity.x * 0.65f, rb.velocity.y, 0f);

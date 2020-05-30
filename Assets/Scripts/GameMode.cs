@@ -12,8 +12,13 @@ public class GameMode : MonoBehaviour
     public GameObject infoText;
 
     private TextMeshProUGUI infoDisplay;
+<<<<<<< HEAD
     public int [] playersScore = {0,0};
     string textToDisplay;
+=======
+    string textToDisplay;
+
+>>>>>>> 1b15dbdaa15812641245313e1611b7d5e4e6d1a4
 
     bool invoked = false;
 
@@ -36,6 +41,13 @@ public class GameMode : MonoBehaviour
     void Awake() 
     {
         DontDestroyOnLoad(this);
+<<<<<<< HEAD
+=======
+        players = GameObject.FindGameObjectsWithTag("Player");
+        player1 = players[0];
+        player2 = players[1];
+        Camera = GameObject.FindGameObjectWithTag("MainCamera");
+>>>>>>> 1b15dbdaa15812641245313e1611b7d5e4e6d1a4
     }
     // Start is called before the first frame update
     void Start()
@@ -55,10 +67,16 @@ public class GameMode : MonoBehaviour
                     player2.GetComponent<PlayerData>().setHP(100);
                     switch(g_mode)
                     {
-                        case Mode.COINGRAB:;
+                        case Mode.COINGRAB:
+                            player1.transform.position = position_p1_grab;
+                            player2.transform.position = position_p2_grab;
+                            Camera.transform.position = position_camera_grab;
                             textToDisplay = "Next mode is Coin Grab!";
                             break;
                         case Mode.FALLINGBLOCKS:
+                            player1.transform.position = position_p1_fallingBlocks;
+                            player2.transform.position = position_p2_fallingBlocks;
+                            Camera.transform.position = position_camera_fallingBlocks;
                             textToDisplay = "Next mode is Falling blocks!";
                             break;
 
@@ -152,6 +170,7 @@ public class GameMode : MonoBehaviour
                 break;
         };
     }
+<<<<<<< HEAD
     public void setPlayers(GameObject p1, GameObject p2)
     {
         player1 = p1;
@@ -176,4 +195,6 @@ public class GameMode : MonoBehaviour
     {
         g_status = status;
     }
+=======
+>>>>>>> 1b15dbdaa15812641245313e1611b7d5e4e6d1a4
 }
