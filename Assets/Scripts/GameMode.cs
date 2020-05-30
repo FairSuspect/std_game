@@ -36,7 +36,6 @@ public class GameMode : MonoBehaviour
     void Awake() 
     {
         DontDestroyOnLoad(this);
-
     }
     // Start is called before the first frame update
     void Start()
@@ -152,7 +151,6 @@ public class GameMode : MonoBehaviour
                 SceneManager.LoadScene("Menu");
                 break;
         };
-
     }
     public void setPlayers(GameObject p1, GameObject p2)
     {

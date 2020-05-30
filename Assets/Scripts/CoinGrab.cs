@@ -131,15 +131,7 @@ public class CoinGrab : MonoBehaviour
                     transform.position = new Vector2(Random.Range(-10f, 10f), Random.Range(-5f, 5f));
                     break;
                 }
-        }
-        
-
-
-        //trg.GetComponent<PlayerData>().Coins++;
-        //Debug.Log(GameObject.Find(trg.name).GetComponent<PlayerData>());//trg.GetComponent<PlayerData>().Coins);
-
-        // objects[4].GetComponent<SpriteRenderer>().color = Color.red;
-    
+        } 
      }
     void createCoins(int count = 10)
     {
