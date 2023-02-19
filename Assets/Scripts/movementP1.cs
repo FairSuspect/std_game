@@ -7,6 +7,10 @@ public class movementP1 : MonoBehaviour {
     public int speed = 8;
     public bool onCollision = false;
     public float jumpForce = 10.0f;//Через переменную не работает
+
+     public KeyCode UpKey = KeyCode.UpArrow; 
+        public KeyCode LeftKey = KeyCode.LeftArrow; 
+        public KeyCode RightKey = KeyCode.RightArrow; 
     Rigidbody2D rb;
     void Awake () {
         rb = GetComponent<Rigidbody2D> ();
@@ -23,12 +27,12 @@ public class movementP1 : MonoBehaviour {
         }
 
         //вверх
-        if (Input.GetKey (KeyCode.UpArrow) && onCollision) {
+        if (Input.GetKey (UpKey) && onCollision) {
             rb.velocity = new Vector3 (rb.velocity.x, 12.5f, 0f);
         }
 
         //вправо и влево
-        if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.LeftArrow)) {
+        if (Input.GetKey (RightKey) || Input.GetKey (LeftKey)) {
             float x = Input.GetAxis ("Horizontal");
             Vector3 move = new Vector3 (x * 12.5f, rb.velocity.y, 0f);
             rb.velocity = move;
